@@ -1,0 +1,12 @@
+services:
+  - type: worker
+    name: worker
+    env: python # Specifies the runtime environment (Python)
+    buildCommand: docker build -t my-worker-image -f Dockerfile . # Builds the Docker image
+    startCommand: python3 main.py # Matches the run command from heroku.yml
+    regions:
+      - oregon # Choose a region (e.g., oregon, frankfurt, etc.)
+    envVars:
+      - key: PYTHON_VERSION # Optional: Specify Python version if needed
+        value: "3.9" # Adjust based on your Dockerfile or requirements
+      # Add other environment variables as needed (e.g., database URLs)
